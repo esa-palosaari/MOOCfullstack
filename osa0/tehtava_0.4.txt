@@ -1,0 +1,4 @@
+# Tehtävä 0.4
+# Kaavio joka kuvaa tilanetta, missä käyttäjä luo uuden muistiinpanon ollessaan
+# sivulla https://fullstack-exampleapp.herokuapp.com/notes eli kun käyttäjä
+# kirjoittaa tekstikenttään jotain ja painaa nappia tallenna
