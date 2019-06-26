@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
+
 const App = () => {
   // tallenna napit omaan tilaansa
   const [good, setGood] = useState(0)
@@ -9,7 +10,14 @@ const App = () => {
 
   return (
     <div>
-      code here
+        <h2>Give feedback</h2>
+        <button onClick={() => setGood(good+1)}>good</button>
+        <button onClick={() => setNeutral(neutral+1)}>neutral</button>
+        <button onClick={() => setBad(bad+1)}>bad</button>
+        <h2>Statistics</h2>
+        <p>Good: {good}</p>
+        <p>Neutral: {neutral}</p>
+        <p>Bad: {bad}</p>
     </div>
   )
 }
