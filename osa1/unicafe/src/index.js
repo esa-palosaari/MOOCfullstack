@@ -1,18 +1,40 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 
-const Statistics = ({neutral, bad, good, all}) => {
+const Statistic = ({text, value}) => 
+{
+    if(text==="Positive") 
+    {
+        return (
+            <>
+                {text}: {value} % <br/>
+            </>
+        )
+    } else 
+    {
+        return (
+            <>
+                {text}: {value}  <br/>
+            </>
+        )
+    }
+}
+
+const Statistics = ({neutral, bad, good, all}) => 
+{
     if (all !==0 ) 
     {
         return (
             <div>
                 <h2>Statistics</h2>
-                <p> Good: {good}<br />
-                    Neutral: {neutral}<br />
-                    Bad: {bad} <br /> <br />
-                    All: {all} <br />
-                    Average: {(good-bad) / all} <br />
-                    Positive: {good/all * 100} %
+                <p> 
+                    <Statistic text="Good" value={good} />
+                    <Statistic text="Neutral" value={neutral} />
+                    <Statistic text="Bad" value={bad} />
+                    <br />
+                    <Statistic text="All" value={all} />
+                    <Statistic text="Average" value={(good-bad) / all} />
+                    <Statistic text="Positive" value={good/all * 100} />
                 </p>
             </div>
     )
@@ -24,7 +46,15 @@ const Statistics = ({neutral, bad, good, all}) => {
     )
 }
 
-const App = () => {
+const Button = ({handleClick, name}) => 
+(
+    <button onClick={handleClick}>
+        {name}
+    </button>
+)
+
+const App = () => 
+{
   // tallenna napit omaan tilaansa
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
@@ -34,9 +64,9 @@ const App = () => {
   return (
     <div>
         <h2>Give feedback</h2>
-        <button onClick={() => setGood(good+1)}>good</button>
-        <button onClick={() => setNeutral(neutral+1)}>neutral</button>
-        <button onClick={() => setBad(bad+1)}>bad</button>
+        <Button handleClick={()=> setGood(good+1)} name="good" />
+        <Button handleClick={() => setNeutral(neutral+1)} name="neutral" />
+        <Button handleClick={() => setBad(bad+1)} name="bad" />
         <Statistics neutral={neutral} bad={ bad} good={good} all={all}/>
     </div>
   )
