@@ -1,6 +1,6 @@
-# Fullstack MOOC repository
+# Full Stack MOOC repository
 
-Fullstack MOOC:in vastaukseni (https://fullstackopen.com).
+Full Stack MOOC:in vastaukseni (https://fullstackopen.com).
 
 [Osa 0](https://github.com/esa-palosaari/MOOCfullstack/tree/master/osa0)
   * [0.4 sekvenssikaavio](https://github.com/esa-palosaari/MOOCfullstack/blob/master/osa0/tehtava_0.4_sekvensskaavio.png)
