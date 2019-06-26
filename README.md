@@ -9,4 +9,4 @@ Fullstack MOOC:in vastaukseni (https://fullstackopen.com).
   
 [Osa 1](https://github.com/esa-palosaari/MOOCfullstack/tree/master/osa1)
   * [kurssitiedot: index.js](https://github.com/esa-palosaari/MOOCfullstack/blob/master/osa1/kurssitiedot/src/index.js)
-  *
+  * [unicafe: index.js](https://github.com/esa-palosaari/MOOCfullstack/blob/master/osa1/unicafe/src/index.js)
