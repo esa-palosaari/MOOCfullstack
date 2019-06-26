@@ -8,4 +8,5 @@ Fullstack MOOC:in vastaukseni (https://fullstackopen.com).
   * [0.6 sekvenssikaavio](https://github.com/esa-palosaari/MOOCfullstack/blob/master/osa0/tehtava_0.6_sekvenssikaavio.png)
   
 [Osa 1](https://github.com/esa-palosaari/MOOCfullstack/tree/master/osa1)
-  * 
+  * [kurssitiedot: index.js](https://github.com/esa-palosaari/MOOCfullstack/blob/master/osa1/kurssitiedot/src/index.js)
+  *
