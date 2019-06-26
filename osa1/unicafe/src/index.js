@@ -7,14 +7,20 @@ const Statistic = ({text, value}) =>
     {
         return (
             <>
-                {text}: {value} % <br/>
+                <tr>  
+                    <td>{text}</td> 
+                    <td>{value} % </td>  
+              </tr>
             </>
         )
     } else 
     {
         return (
             <>
-                {text}: {value}  <br/>
+                <tr>   
+                    <td>{text}</td>
+                    <td>{value}</td> 
+                </tr>
             </>
         )
     }
