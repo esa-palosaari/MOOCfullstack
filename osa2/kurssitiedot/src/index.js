@@ -12,19 +12,21 @@ const Header = ({course}) => {
 
 const Content = ({course}) => {
     console.log('content props', course)
+    const rows = () =>
+    course.parts.map(mappedPart => 
+        <Part key={mappedPart.id} part={mappedPart.name} exercises={mappedPart.exercises} />)
     return (
         <>
-            <Part part={course.parts[0].name} exercises={course.parts[0].exercises}/>
-            <Part part={course.parts[1].name} exercises={course.parts[1].exercises}/>
-            <Part part={course.parts[2].name} exercises={course.parts[2].exercises}/>     
+            {rows()}   
         </>
     )
 }
 
 const Part = (props) => {
+    console.log('Part props', props)
     return (
         <>
-            <p>{props.part} {props.exercises}</p>
+            <p key={props.id}>{props.part} {props.exercises}</p>
         </>
     )
 }
@@ -56,15 +58,18 @@ const App = () => {
     parts:  [
         {
             name: 'Fundamentals of React',
-            exercises: 10
+            exercises: 10,
+            id: 1
         },
         {
             name: 'Using props to pass data',
-            exercises: 7
+            exercises: 7,
+            id: 2
         },
         {
             name: 'State of a component',
-            exercises: 14
+            exercises: 14,
+            id: 3
         }
     ]
   }
