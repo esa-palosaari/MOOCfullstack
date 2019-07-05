@@ -11,3 +11,5 @@ Vastaukseni Full Stack MOOC:in tehtäviin (https://fullstackopen.com).
   * [kurssitiedot: index.js](https://github.com/esa-palosaari/MOOCfullstack/blob/master/osa1/kurssitiedot/src/index.js)
   * [unicafe: index.js](https://github.com/esa-palosaari/MOOCfullstack/blob/master/osa1/unicafe/src/index.js)
   * [anekdootit: index.js](https://github.com/esa-palosaari/MOOCfullstack/blob/master/osa1/anekdootit/src/index.js)
+
+[Osa 2](https://github.com/esa-palosaari/MOOCfullstack/tree/master/osa2)
