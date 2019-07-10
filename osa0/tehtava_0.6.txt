@@ -1,0 +1,27 @@
+# Tehtävä 0.6
+#
+# Kaavio kuvaa tilanetta, missä käyttäjä luo
+# uuden muistiinpanon single page versiossa
+# osoitteessa https://fullstack-exampleapp.herokuapp.com/spa
+#
+# Kaavio on luotu ohjelmalla https://www.websequencediagrams.com/
+
+
+
+note over selain:
+Selaimen lataamassa JavaScript-tiedostossa
+oleva koodi päivittää selaimessa muistiinpanojen
+tiedot ja piirtää ruudun sisällön uudelleen.
+Lopuksi se lähettää uuden muistiinpanon
+palvelimelle.
+end note
+
+selain->palvelin: HTTP POST https://fullstack-exampleapp.herokuapp.com/new_note_spa
+
+
+note over palvelin:
+POST-pyyntö sisältää JSON-muodossa
+olevan uuden muistiinpanon.
+end note
+
+palvelin-->selain: statuskoodi "201 created"
