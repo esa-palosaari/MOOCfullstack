@@ -19,12 +19,14 @@ const Persons = ({newFilter, persons}) =>
                       <p key={person.name}>
                           {person.name} {person.number}
                       </p>)
-}
+  }
   return names()
 }
 
-const Filter = ({newFilter, setNewFilter, persons}) => {
-  const filterNames = (event) => {
+const Filter = ({newFilter, setNewFilter, persons}) => 
+{
+  const filterNames = (event) => 
+  {
     event.preventDefault()
     console.log('char added', event.target)
     if (newFilter === '') {
@@ -49,17 +51,29 @@ const PersonForm = ({ persons,
                       setNewName,
                       newNumber,
                       setNewNumber  
-                    }) => {
-
-  const addName = (event) => {
+                    }) => 
+{
+  const addName = (event) => 
+  {
     event.preventDefault()
     console.log('button clicked', event.target)
-    if (persons.find((person) => person.name === newName)) {
+    if (persons.find((person) => person.name === newName)) 
+    {
       window.alert(`${newName} is already added to phonebook`)
-    } else {
-      setPersons([...persons, {name:newName, number:newNumber}])
-      setNewName('')
-      setNewNumber('')
+    } else 
+    {
+      const personObject = {name: newName, number: newNumber}
+      // sending the new person to database
+      axios
+        .post('http://localhost:3001/persons', personObject)
+        .then(response => 
+          {
+            setPersons(persons.concat(response.data))
+            setNewName('')
+            setNewNumber('')
+          }  
+        )
+
     }  
   }
 
