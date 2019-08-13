@@ -24,6 +24,11 @@
       "name": "Mikke Mikkelson",
       "number": "+44 333 666",
       "id": 5
+    },
+    {
+      "name": "Jansku Bansku",
+      "number": "00000001",
+      "id": 6
     }
   ]
 }
