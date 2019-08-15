@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import personService from './services/personserver'
 
-const Persons = ({newFilter, persons}) => 
+const Persons = ({newFilter, persons, setPersons}) => 
 {
   const filterToLowerCase = newFilter.toLocaleLowerCase()
   function getPersonsOrFiltered() {
@@ -15,10 +14,24 @@ const Persons = ({newFilter, persons}) =>
   }
   const filteredPersons = getPersonsOrFiltered()
 
+  const personRemover = (person) => personService
+                                      .remove(person.id)
+                                      .then(returned => {
+                                          //console.log(returned)
+                                          const personsCopy = persons.filter(
+                                            item => item.id !== person.id)
+                                          setPersons(personsCopy)
+                                      })           
+
+
+
   const names = () => {
     return filteredPersons.map(person => 
                       <p key={person.name}>
-                          {person.name} {person.number}
+                          {person.name} {person.number} 
+                          <button onClick={() => personRemover(person)}>
+                                    delete
+                          </button>
                       </p>)
   }
   return names()
@@ -54,6 +67,7 @@ const PersonForm = ({ persons,
                       setNewNumber  
                     }) => 
 {
+  const shortid = require('shortid')
   const addName = (event) => 
   {
     event.preventDefault()
@@ -61,9 +75,10 @@ const PersonForm = ({ persons,
     if (persons.find((person) => person.name === newName)) 
     {
       window.alert(`${newName} is already added to phonebook`)
-    } else 
+    } 
+    else 
     {
-      const personObject = {name: newName, number: newNumber}
+      const personObject = {id: shortid.generate(), name: newName, number: newNumber}
       // sending the new person to database
       personService
         .create(personObject)
@@ -73,14 +88,6 @@ const PersonForm = ({ persons,
               setNewName('')
               setNewNumber('')
             })
-/*       axios
-        .post('http://localhost:3001/persons', personObject)
-        .then(response => 
-          {
-            
-          }  
-        ) */
-
     }  
   }
 
@@ -142,6 +149,7 @@ const App = () => {
 
         <Persons  newFilter={newFilter} 
                   persons={persons}
+                  setPersons={setPersons}
         />
 
     </div>
