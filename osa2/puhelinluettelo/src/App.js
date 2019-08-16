@@ -29,7 +29,15 @@ const Persons = ({newFilter, persons, setPersons}) =>
     return filteredPersons.map(person => 
                       <p key={person.name}>
                           {person.name} {person.number} 
-                          <button onClick={() => personRemover(person)}>
+                          <button onClick={() => 
+                              {
+                                if(window.confirm(`Delete ${person.name}?`))
+                                {
+                                  return personRemover(person)
+                                }
+                                
+                              }                          
+                            }>
                                     delete
                           </button>
                       </p>)
