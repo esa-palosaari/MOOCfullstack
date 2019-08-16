@@ -4,6 +4,7 @@ import personService from './services/personserver'
 const Persons = ({newFilter, persons, setPersons}) => 
 {
   const filterToLowerCase = newFilter.toLocaleLowerCase()
+
   function getPersonsOrFiltered() {
     if(newFilter !== "") {
       return persons.filter(person => 
@@ -12,6 +13,7 @@ const Persons = ({newFilter, persons, setPersons}) =>
       return persons
     }
   }
+
   const filteredPersons = getPersonsOrFiltered()
 
   const personRemover = (person) => personService
@@ -23,8 +25,6 @@ const Persons = ({newFilter, persons, setPersons}) =>
                                           setPersons(personsCopy)
                                       })           
 
-
-
   const names = () => {
     return filteredPersons.map(person => 
                       <p key={person.name}>
@@ -35,13 +35,13 @@ const Persons = ({newFilter, persons, setPersons}) =>
                                 {
                                   return personRemover(person)
                                 }
-                                
                               }                          
                             }>
                                     delete
                           </button>
                       </p>)
   }
+
   return names()
 }
 
@@ -76,13 +76,33 @@ const PersonForm = ({ persons,
                     }) => 
 {
   const shortid = require('shortid')
+
   const addName = (event) => 
   {
     event.preventDefault()
     console.log('button clicked', event.target)
-    if (persons.find((person) => person.name === newName)) 
+    const personAlready = persons.find((person) => person.name === newName)
+    if (personAlready) 
     {
-      window.alert(`${newName} is already added to phonebook`)
+      if (window.confirm(
+           `${newName} is already added to phonebook, replace the old number with a new one`)
+         )
+      {
+        // update the number
+        personService
+          .update(personAlready.id, 
+                  {id:personAlready.id, 
+                    name:personAlready.name,
+                    number:newNumber
+                  })
+          .then(returnedPerson =>
+            {
+              setPersons(persons.map(person => 
+                person.id !== personAlready.id ? person : returnedPerson))
+              setNewName('')
+              setNewNumber('')              
+            })  
+      }
     } 
     else 
     {
