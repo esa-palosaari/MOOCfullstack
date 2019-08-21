@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import personService from './services/personserver'
 
-const Persons = ({newFilter, persons, setPersons}) => 
+const Persons = ({newFilter, 
+                  persons, 
+                  setPersons,
+                  setSuccessMessage
+                }) => 
 {
   const filterToLowerCase = newFilter.toLocaleLowerCase()
 
@@ -23,6 +27,13 @@ const Persons = ({newFilter, persons, setPersons}) =>
                                           const personsCopy = persons.filter(
                                             item => item.id !== person.id)
                                           setPersons(personsCopy)
+                                          setSuccessMessage(
+                                            `${person.name} removed`)
+                                          setTimeout(()=>
+                                            {
+                                            setSuccessMessage(null)
+                                            }, 5000
+                                            )
                                       })           
 
   const names = () => {
@@ -72,7 +83,8 @@ const PersonForm = ({ persons,
                       newName,
                       setNewName,
                       newNumber,
-                      setNewNumber  
+                      setNewNumber,
+                      setSuccessMessage  
                     }) => 
 {
   const shortid = require('shortid')
@@ -99,6 +111,12 @@ const PersonForm = ({ persons,
             {
               setPersons(persons.map(person => 
                 person.id !== personAlready.id ? person : returnedPerson))
+              setSuccessMessage(
+                `Changed the number of ${returnedPerson.name} to ${returnedPerson.number}`
+              )
+              setTimeout(() => {
+                setSuccessMessage(null)
+              }, 5000)
               setNewName('')
               setNewNumber('')              
             })  
@@ -113,6 +131,12 @@ const PersonForm = ({ persons,
           .then(returnedPerson =>
             {
               setPersons(persons.concat(returnedPerson))
+              setSuccessMessage(
+                `${returnedPerson.name} added`
+              )
+              setTimeout(() => {
+                setSuccessMessage(null)
+              }, 5000)
               setNewName('')
               setNewNumber('')
             })
@@ -138,11 +162,25 @@ const PersonForm = ({ persons,
   )
 }
 
+const SuccessNotification = ({message}) => 
+{
+  if(message === null)
+  {
+    return null
+  }
+  return (
+    <div className="success">
+      {message}
+    </div>
+  )
+}
+
 const App = () => {
   const [ persons, setPersons] = useState([])
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
   const [ newFilter, setNewFilter ] = useState('')
+  const [ successMessage, setSuccessMessage ] = useState('toimii')
 
   useEffect(() => {
     personService
@@ -158,6 +196,8 @@ const App = () => {
     <div>
         <h2>Phonebook</h2>
         
+        <SuccessNotification message={successMessage} />
+
         <Filter newFilter={newFilter} 
                 setNewFilter={setNewFilter}
                 persons={persons}
@@ -171,6 +211,7 @@ const App = () => {
                     setNewName={setNewName}
                     newNumber={newNumber}
                     setNewNumber={setNewNumber}
+                    setSuccessMessage={setSuccessMessage}
         /> 
 
         <h2>Numbers</h2>
@@ -178,6 +219,7 @@ const App = () => {
         <Persons  newFilter={newFilter} 
                   persons={persons}
                   setPersons={setPersons}
+                  setSuccessMessage={setSuccessMessage}
         />
 
     </div>
