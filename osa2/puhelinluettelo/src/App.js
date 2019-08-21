@@ -78,13 +78,18 @@ const Filter = ({newFilter, setNewFilter, persons}) =>
     </form>)
 }
 
+/* 
+* Add or update persons and their numbers 
+*/
+
 const PersonForm = ({ persons,
                       setPersons,
                       newName,
                       setNewName,
                       newNumber,
                       setNewNumber,
-                      setSuccessMessage  
+                      setSuccessMessage,
+                      setErrorMessage  
                     }) => 
 {
   const shortid = require('shortid')
@@ -119,7 +124,18 @@ const PersonForm = ({ persons,
               }, 5000)
               setNewName('')
               setNewNumber('')              
-            })  
+            })
+          .catch(error => 
+            {
+              setErrorMessage(
+                `Information of ${personAlready.name} has been removed from the server`
+                )
+              setTimeout(() => 
+              {
+                setErrorMessage(null)
+              }, 5000)
+            }
+            )  
       }
     } 
     else 
@@ -175,12 +191,26 @@ const SuccessNotification = ({message}) =>
   )
 }
 
+const ErrorNotification = ({message}) =>
+{
+  if(message===null)
+  {
+    return null
+  }
+  return (
+    <div className="error">
+      {message}
+    </div>
+  )
+}
+
 const App = () => {
   const [ persons, setPersons] = useState([])
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber ] = useState('')
   const [ newFilter, setNewFilter ] = useState('')
-  const [ successMessage, setSuccessMessage ] = useState('toimii')
+  const [ successMessage, setSuccessMessage ] = useState('')
+  const [ errorMessage, setErrorMessage ] = useState('')
 
   useEffect(() => {
     personService
@@ -197,6 +227,7 @@ const App = () => {
         <h2>Phonebook</h2>
         
         <SuccessNotification message={successMessage} />
+        <ErrorNotification message={errorMessage} />
 
         <Filter newFilter={newFilter} 
                 setNewFilter={setNewFilter}
@@ -212,6 +243,7 @@ const App = () => {
                     newNumber={newNumber}
                     setNewNumber={setNewNumber}
                     setSuccessMessage={setSuccessMessage}
+                    setErrorMessage={setErrorMessage}
         /> 
 
         <h2>Numbers</h2>
