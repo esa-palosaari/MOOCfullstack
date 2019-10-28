@@ -17,4 +17,4 @@ Vastaukseni Full Stack MOOC:in tehtäviin (https://fullstackopen.com).
  * [maiden tiedot: /src](https://github.com/esa-palosaari/MOOCfullstack/tree/master/osa2/maiden_tiedot/src)
  * [puhelinluettelo](https://github.com/esa-palosaari/MOOCfullstack/tree/master/osa2/puhelinluettelo)
  
- [Osa 2](https://github.com/esa-palosaari/MOOCfs_3)
+ [Osa 3](https://github.com/esa-palosaari/MOOCfs_3)
