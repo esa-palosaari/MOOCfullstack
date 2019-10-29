@@ -13,3 +13,8 @@ Vastaukseni Full Stack MOOC:in tehtäviin (https://fullstackopen.com).
   * [anekdootit: index.js](https://github.com/esa-palosaari/MOOCfullstack/blob/master/osa1/anekdootit/src/index.js)
 
 [Osa 2](https://github.com/esa-palosaari/MOOCfullstack/tree/master/osa2)
+ * [kurssitiedot:  /src](https://github.com/esa-palosaari/MOOCfullstack/tree/master/osa2/kurssitiedot/src)
+ * [maiden tiedot: /src](https://github.com/esa-palosaari/MOOCfullstack/tree/master/osa2/maiden_tiedot/src)
+ * [puhelinluettelo](https://github.com/esa-palosaari/MOOCfullstack/tree/master/osa2/puhelinluettelo)
+ 
+ [Osa 3](https://github.com/esa-palosaari/MOOCfs_3)
